@@ -23,3 +23,6 @@ s = open('./msg.dec','w')
 s.write(dt.str)
 f.close()
 s.close()
+
+# Fails due to int being converted to str
+# Will post fix tomorrow
