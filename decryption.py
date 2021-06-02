@@ -1,28 +1,23 @@
+#!/usr/bin/env python3
 #Alen's code
 import string
-import binascii
-import struct
-
 
 f = open('./msg.enc','r')
 WR = f.read()
-bytes = bytearray.fromhex(WR)
-print(bytes)
+MSG = bytearray.fromhex(WR)
 
-struct.unpack(native, bytes)
+def decryption(msg):
+    pt = []
+    for char in msg:
+        char = char - 18
+        char = 179 * char % 256
+        pt.append(char)
+    return bytes(pt)
 
-def decryption(fart):
-	dt = ''
-	for char in fart:
-		dt.append((127 / char -18) * 256)
-	
-	
-dt = decryption(bytes)
-print(dt)
+pt = decryption(MSG)
+print(pt)
+
 s = open('./msg.dec','w')
-s.write(dt.str)
+s.write(str(pt))
 f.close()
 s.close()
-
-# Fails due to int being converted to str
-# Will post fix tomorrow
